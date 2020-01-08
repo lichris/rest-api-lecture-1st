@@ -2,8 +2,8 @@ var express = require('express')
 var router = express.Router()
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express Yahoo' })
+router.get('/', (req, res, next) => {
+  return res.json({ message: 'pong' })
 })
 
 module.exports = router
