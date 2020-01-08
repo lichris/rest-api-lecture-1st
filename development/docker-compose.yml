@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  mysql:
+    restart: always
+    container_name: mysql
+    build:
+      context: ./mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 13306:3306
+
+  node:
+    restart: always
+    container_name: node
+    build:
+      context: ./node
+    volumes:
+      - ./src:/home/app
+    ports:
+      - 13000:3000
+    tty: true
+    entrypoint: prepare-server
+
+  redis:
+    restart: always
+    container_name: redis
+    build:
+      context: ./redis
+    volumes:
+      - redis_data:/home
+    ports:
+      - 16379:6379
+
+volumes:
+  mysql_data:
+  redis_data:
