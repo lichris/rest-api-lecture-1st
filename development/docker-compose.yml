@@ -6,10 +6,17 @@ services:
     container_name: mysql
     build:
       context: ./mysql
+      args:
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=password
+        - MYSQL_ROOT_PASSWORD=password
+    command: --init-file /home/init.sql
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
       - 13306:3306
+    cap_add:
+      - SYS_NICE # CAP_SYS_NICE
 
   node:
     restart: always
@@ -32,6 +39,12 @@ services:
       - redis_data:/home
     ports:
       - 16379:6379
+
+  adminer:
+    build:
+      context: ./adminer
+    ports:
+      - 18080:8080
 
 volumes:
   mysql_data:
