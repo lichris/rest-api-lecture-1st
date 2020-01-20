@@ -23,12 +23,12 @@ services:
     container_name: node
     build:
       context: ./node
+    working_dir: /home/app
+    command: "/bin/sh -c 'npm install && npm start'"
     volumes:
       - ./src:/home/app
     ports:
       - 13000:3000
-    tty: true
-    entrypoint: prepare-server
 
   redis:
     restart: always
@@ -39,12 +39,6 @@ services:
       - redis_data:/home
     ports:
       - 16379:6379
-
-  adminer:
-    build:
-      context: ./adminer
-    ports:
-      - 18080:8080
 
 volumes:
   mysql_data:
