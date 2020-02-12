@@ -1,9 +1,6 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  return res.json({ message: '와 진짜 신기하다!' })
-})
+router.use('/v1', require('./v1'))
 
 module.exports = router
