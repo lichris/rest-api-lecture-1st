@@ -7,9 +7,9 @@ if (process.env.NODE_ENV !== 'production') {
 const dialect = 'mysql'
 
 const pool = {
-  max: process.env.NODE_ENV === 'production' ? 1000 : 10,
+  max: process.env.NODE_ENV === 'production' ? 50 : 10,
   min: process.env.NODE_ENV === 'production' ? 50 : 1,
-  idle: process.env.NODE_ENV === 'production' ? 10000 : 10
+  idle: process.env.NODE_ENV === 'production' ? 50 : 10
 }
 
 const define = {
@@ -20,57 +20,39 @@ const define = {
 
 module.exports = {
   development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PW,
-    database: process.env.DB_DEV,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    username: process.env.DEV_DB_USER,
+    password: process.env.DEV_DB_PW,
+    database: process.env.DEV_DB,
+    host: process.env.DEV_DB_HOST,
+    port: process.env.DEV_DB_PORT,
     dialect,
     timezone: '+09:00',
     pool,
     define,
-    logging: process.env.DB_LOGGING === 'true'
+    logging: process.env.DEV_DB_LOGGING === 'true'
   },
   test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PW,
-    database: process.env.DB_TEST,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    username: process.env.TEST_DB_USER,
+    password: process.env.TEST_DB_PW,
+    database: process.env.TEST_DB,
+    host: process.env.TEST_DB_HOST,
+    port: process.env.TEST_DB_PORT,
     dialect,
     timezone: '+09:00',
     pool,
     define,
-    // disable logging; default: console.log
-    logging: false
+    logging: process.env.TEST_DB_LOGGING === 'true'
   },
   production: {
-    replication: {
-      read: [
-        {
-          host: process.env.DB_HOST_SLV_1,
-          username: process.env.DB_USER,
-          password: process.env.DB_PW
-        },
-        {
-          host: process.env.DB_HOST_SLV_2,
-          username: process.env.DB_USER,
-          password: process.env.DB_PW
-        }
-      ],
-      write: {
-        host: process.env.DB_HOST_MST,
-        username: process.env.DB_USER,
-        password: process.env.DB_PW
-      }
-    },
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+    username: process.env.PROD_DB_USER,
+    password: process.env.PROD_DB_PW,
+    database: process.env.PROD_DB,
+    host: process.env.PROD_DB_HOST,
+    port: process.env.PROD_DB_PORT,
     dialect,
     timezone: '+09:00',
     pool,
     define,
-    // disable logging; default: console.log
-    logging: false
+    logging: process.env.PROD_DB_LOGGING === 'true'
   }
 }
