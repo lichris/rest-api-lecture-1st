@@ -1,12 +1,8 @@
-module.exports.get = (req, res, next) => {
+const v1Models = require('../../models/v1')
+
+module.exports.get = async (req, res, next) => {
   try {
-    const users = [
-      { id: 1, name: '이희승' },
-      { id: 2, name: '이희승' },
-      { id: 3, name: '이희승' },
-      { id: 4, name: '이희승' },
-      { id: 5, name: '이희승' }
-    ]
+    const users = await v1Models.User.findAll()
 
     return res.json({ users })
   } catch (err) {
