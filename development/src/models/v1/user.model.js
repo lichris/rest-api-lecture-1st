@@ -23,14 +23,14 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   // function override
-  User.prototype.toJSON = function () {
-    const values = Object.assign({}, this.get())
+  // User.prototype.toJSON = function () {
+  //   const values = Object.assign({}, this.get())
 
-    return {
-      id: values.id,
-      nickname: values.nickname
-    }
-  }
+  //   return {
+  //     id: values.id,
+  //     nickname: values.nickname
+  //   }
+  // }
 
   return User
 }
