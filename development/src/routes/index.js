@@ -7,7 +7,13 @@ router.get('/asdf', async (req, res) => {
   const v1Models = require('../models/v1')
 
   try {
-    const a = await v1Models.sequelize.query('select * from users', { type: v1Models.Sequelize.QueryTypes.SELET })
+    const a = await v1Models.sequelize.query(
+      'select * from users',
+      {
+        type: v1Models.Sequelize.QueryTypes.SELECT
+      }
+    )
+
     return res.json({ a })
   } catch (error) {
     console.error(error)
