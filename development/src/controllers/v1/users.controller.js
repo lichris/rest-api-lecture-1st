@@ -1,5 +1,7 @@
+'use strict'
+
 const _ = require('lodash')
-const v1Models = require('../../models/v1').default
+const v1Models = require('../../models/v1')
 
 module.exports.get = async (req, res, next) => {
   try {
@@ -68,4 +70,11 @@ module.exports.destroy = (req, res, next) => {
   }).catch(err => { throw (err) })
 
   return res.json({ message: '사용자를 삭제했습니다.' })
+}
+
+module.exports.createUserProfile = async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err)
+  }
 }

@@ -1,3 +1,5 @@
+'use strict'
+
 const express = require('express')
 const router = express.Router()
 
@@ -21,5 +23,8 @@ router.route('/:id')
   .put(controller.update)
   // delete : 삭제
   .delete(controller.destroy)
+
+router.route('/profiles')
+  .post(controller.createUserProfile)
 
 module.exports = router

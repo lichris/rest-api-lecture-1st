@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = (sequelize, DataTypes) => {
   const Question = sequelize.define(
     'Question',
@@ -30,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId'
     })
 
-    Question.belongToMany(models.Tag, {
+    Question.belongsToMany(models.Tag, {
       as: 'tags',
       through: 'PivotQuestionTag',
       foreignKey: 'questionId',

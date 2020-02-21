@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
+    "@hapi/joi": "^17.1.0",
     "bcrypt": "^3.0.8",
     "cookie-parser": "^1.4.4",
     "core-js": "^3.6.4",
@@ -15,8 +16,10 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-joi-validation": "^4.0.3",
     "helmet": "^3.21.2",
     "http-errors": "^1.7.3",
+    "http-status-codes": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "morgan": "^1.9.1",
