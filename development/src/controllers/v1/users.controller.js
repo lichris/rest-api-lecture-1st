@@ -56,7 +56,8 @@ module.exports.update = (req, res, next) => {
       where: {
         id: req.params.id
       }
-    }).catch(err => { throw (err) })
+    })
+      .catch(err => { throw (err) })
   }
 
   return res.json({ message: '비밀번호를 수정했습니다.' })
@@ -67,7 +68,8 @@ module.exports.destroy = (req, res, next) => {
     where: {
       id: req.params.id
     }
-  }).catch(err => { throw (err) })
+  })
+    .catch(err => { throw (err) })
 
   return res.json({ message: '사용자를 삭제했습니다.' })
 }

@@ -22,7 +22,7 @@ module.exports = {
     'comma-spacing': ['error', { 'after': true, 'before': false }],
     'func-call-spacing': ['error', 'never'],
     'implicit-arrow-linebreak': ['error', 'beside'],
-    'newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 2 }],
+    'newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 1 }],
     'no-trailing-spaces': ['error', { 'skipBlankLines': true }],
     'object-curly-newline': ['error', { 'consistent': true }],
     'object-curly-spacing': ['error', 'always'],
