@@ -1,9 +1,8 @@
 const _ = require('lodash')
-const v1Models = require('../../models/v1')
+const v1Models = require('../../models/v1').default
 
 module.exports.get = async (req, res, next) => {
   try {
-    // TODO
     // 1. query 가 없으면 getAll
     if (_.isEmpty(req.query)) {
       const users = await v1Models.User.findAll()
@@ -48,7 +47,7 @@ module.exports.create = async (req, res, next) => {
 
 module.exports.update = (req, res, next) => {
   if (req.body.password) {
-    // single action 업데이트 
+    // single action 업데이트
     v1Models.User.update({
       password: req.body.password
     }, {

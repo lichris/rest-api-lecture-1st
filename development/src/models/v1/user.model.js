@@ -20,17 +20,16 @@ module.exports = (sequelize, DataTypes) => {
   )
 
   User.associate = function (models) {
+    User.hasOne(models.User, {
+      as: 'profile',
+      foreignKey: 'userId'
+    })
+
+    User.hasMany(models.Question, {
+      as: 'questions',
+      foreignKey: 'userId'
+    })
   }
-
-  // function override
-  // User.prototype.toJSON = function () {
-  //   const values = Object.assign({}, this.get())
-
-  //   return {
-  //     id: values.id,
-  //     nickname: values.nickname
-  //   }
-  // }
 
   return User
 }
