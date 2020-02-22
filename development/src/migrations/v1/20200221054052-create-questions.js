@@ -15,7 +15,7 @@ module.exports = {
           model: 'users',
           key: 'id'
         },
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER.UNSIGNED,
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },

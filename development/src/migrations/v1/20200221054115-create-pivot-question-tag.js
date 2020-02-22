@@ -15,7 +15,7 @@ module.exports = {
           model: 'questions',
           key: 'id'
         },
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER.UNSIGNED,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
@@ -25,7 +25,7 @@ module.exports = {
           model: 'tags',
           key: 'id'
         },
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER.UNSIGNED,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       }

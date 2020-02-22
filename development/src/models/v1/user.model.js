@@ -1,5 +1,9 @@
 'use strict'
 
+const bcrypt = require('bcrypt')
+
+const SALT_ROUND = 10
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
@@ -20,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
   )
 
   User.associate = function (models) {
-    User.hasOne(models.User, {
+    User.hasOne(models.UserProfile, {
       as: 'profile',
       foreignKey: 'userId'
     })
@@ -29,6 +33,28 @@ module.exports = (sequelize, DataTypes) => {
       as: 'questions',
       foreignKey: 'userId'
     })
+  }
+
+  User.beforeSave(async (user) => {
+    try {
+      if (user.changed('password')) {
+        const salt = await bcrypt.genSalt(SALT_ROUND)
+        // eslint-disable-next-line require-atomic-updates
+        user.password = await bcrypt.hash(user.password, salt)
+      }
+    } catch (err) {
+      throw err
+    }
+  })
+
+  User.prototype.checkPassword = async function (password) {
+    try {
+      const isMatch = await bcrypt.compare(password, this.getDataValue('password'))
+
+      return isMatch
+    } catch (err) {
+      throw err
+    }
   }
 
   return User

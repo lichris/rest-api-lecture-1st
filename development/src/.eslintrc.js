@@ -22,13 +22,12 @@ module.exports = {
     'comma-spacing': ['error', { 'after': true, 'before': false }],
     'func-call-spacing': ['error', 'never'],
     'implicit-arrow-linebreak': ['error', 'beside'],
-    'newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 1 }],
+    'newline-per-chained-call': ['error', { 'ignoreChainWithDepth': 2 }],
     'no-trailing-spaces': ['error', { 'skipBlankLines': true }],
     'object-curly-newline': ['error', { 'consistent': true }],
     'object-curly-spacing': ['error', 'always'],
     'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],
     'semi': ['error', 'never'],
-    'space-before-function-paren': ['error', 'always'],
-    'template-curly-spacing': ['error', 'always']
+    'space-before-function-paren': ['error', 'always']
   }
 }

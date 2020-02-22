@@ -3,7 +3,7 @@ module.exports = {
     'js'
   ],
   testMatch: [
-    '**/test/**/*.test.js'
+    '**/tests/**/*.test.js'
   ],
   testEnvironment: 'node'
 }
