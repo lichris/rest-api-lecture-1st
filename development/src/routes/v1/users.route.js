@@ -1,21 +1,24 @@
 'use strict'
 
+const validator = require('express-joi-validation').createValidator()
 const express = require('express')
 const router = express.Router()
 
 const controller = require('../../controllers/v1/users.controller')
+const validation = require('../../validations/v1/user.validation')
+const auth = require('../../middlewares/v1/auth.middleware')
 
 // http method
 
 router.route('/')
-  // 사용자 조회
-  // query 가 없으면 getAll
-  // id 가 있으면 getbyid
-  // nickname 이 있으면 getbynickname
-  .get(controller.get)
-  // post : 생성
-  // body: {nickname, password}
-  .post(controller.create)
+  .get(
+    auth.check,
+    controller.get
+  )
+  .post(
+    validator.body(validation.create),
+    controller.create
+  )
 
 router.route('/:id')
   // put : 수정

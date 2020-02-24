@@ -18,27 +18,27 @@ services:
     cap_add:
       - SYS_NICE # CAP_SYS_NICE
 
-  node:
-    restart: always
-    container_name: node
-    build:
-      context: ./node
-    working_dir: /home/app
-    command: "/bin/sh -c 'npm install && npm start'"
-    volumes:
-      - ./src:/home/app
-    ports:
-      - 13000:3000
+  # node:
+  #   restart: always
+  #   container_name: node
+  #   build:
+  #     context: ./node
+  #   working_dir: /home/app
+  #   command: "/bin/sh -c 'npm install && npm start'"
+  #   volumes:
+  #     - ./src:/home/app
+  #   ports:
+  #     - 13000:3000
 
-  redis:
-    restart: always
-    container_name: redis
-    build:
-      context: ./redis
-    volumes:
-      - redis_data:/home
-    ports:
-      - 16379:6379
+  # redis:
+  #   restart: always
+  #   container_name: redis
+  #   build:
+  #     context: ./redis
+  #   volumes:
+  #     - redis_data:/home
+  #   ports:
+  #     - 16379:6379
 
 volumes:
   mysql_data:

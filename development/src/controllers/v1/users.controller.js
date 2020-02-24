@@ -5,33 +5,7 @@ const v1Models = require('../../models/v1')
 
 module.exports.get = async (req, res, next) => {
   try {
-    // 1. query 가 없으면 getAll
-    if (_.isEmpty(req.query)) {
-      const users = await v1Models.User.findAll()
-      return res.json({ users })
-    }
-
-    let options = {
-      where: {}
-    }
-
-    // 2. query id 가 있으면 getbyid
-    if (req.query.id) {
-      options.where.id = req.query.id
-    }
-
-    if (req.query.nickname) {
-      options.where.nickname = req.query.nickname
-    }
-
-    const user = await v1Models.User.findOne(options)
-
-    if (!user) {
-      return res.status(404)
-        .json({ message: '사용자를 찾을 수 없습니다.' })
-    }
-
-    return res.json({ user })
+    return res.json({ data: { user: req.user } })
   } catch (err) {
     next(err)
   }
