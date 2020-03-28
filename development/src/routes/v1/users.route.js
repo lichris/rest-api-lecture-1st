@@ -20,13 +20,6 @@ router.route('/')
     controller.create
   )
 
-router.route('/:id')
-  // put : 수정
-  // body: password
-  .put(controller.update)
-  // delete : 삭제
-  .delete(controller.destroy)
-
 router.route('/profiles')
   .put(
     auth.check,
@@ -36,5 +29,12 @@ router.route('/profiles')
     auth.check,
     controller.clearProfile
   )
+
+router.route('/:id')
+  // put : 수정
+  // body: password
+  .put(controller.update)
+  // delete : 삭제
+  .delete(controller.destroy)
 
 module.exports = router

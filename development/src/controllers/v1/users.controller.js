@@ -48,11 +48,16 @@ module.exports.destroy = (req, res, next) => {
 
 module.exports.updateProfile = async (req, res, next) => {
   try {
-    const userProfile = req.user.profile
+    const profile = req.user.profile
 
-    await userProfile(req.body)
+    await profile.update(req.body)
 
-    return res.json({ message: '프로필을 수정했습니다.' })
+    return res.json({
+      message: '프로필을 수정했습니다.',
+      data: {
+        profile
+      }
+    })
   } catch (err) {
     next(err)
   }

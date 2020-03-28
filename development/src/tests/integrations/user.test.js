@@ -42,5 +42,7 @@ describe('PUT /users/profiles', () => {
       .set('Authorization', `Bearer ${ token }`)
 
     expect(res.statusCode).toBe(HttpStatusCodes.OK)
+    expect(res.body.data.profile.profileImg).toBe('/asdf')
+    expect(res.body.data.profile.greeting).toBe('asdf')
   })
 })
