@@ -1,5 +1,4 @@
 const request = require('supertest')
-const jwt = require('jsonwebtoken')
 const randomString = require('random-string')
 const HttpStatusCodes = require('http-status-codes')
 
@@ -59,6 +58,4 @@ describe('Auth 테스트', () => {
       expect(response.statusCode).toBe(HttpStatusCodes.NOT_FOUND)
     })
   })
-
-
 })

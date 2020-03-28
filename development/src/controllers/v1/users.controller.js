@@ -30,8 +30,7 @@ module.exports.update = (req, res, next) => {
       where: {
         id: req.params.id
       }
-    })
-      .catch(err => { throw (err) })
+    }).catch(err => { throw (err) })
   }
 
   return res.json({ message: '비밀번호를 수정했습니다.' })
@@ -42,14 +41,26 @@ module.exports.destroy = (req, res, next) => {
     where: {
       id: req.params.id
     }
-  })
-    .catch(err => { throw (err) })
+  }).catch(err => { throw (err) })
 
   return res.json({ message: '사용자를 삭제했습니다.' })
 }
 
-module.exports.createUserProfile = async (req, res, next) => {
+module.exports.updateProfile = async (req, res, next) => {
   try {
+    const userProfile = req.user.profile
+
+    await userProfile(req.body)
+
+    return res.json({ message: '프로필을 수정했습니다.' })
+  } catch (err) {
+    next(err)
+  }
+}
+
+module.exports.clearProfile = async (req, res, next) => {
+  try {
+    
   } catch (err) {
     next(err)
   }

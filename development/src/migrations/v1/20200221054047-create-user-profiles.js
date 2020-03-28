@@ -14,6 +14,7 @@ module.exports = {
           model: 'users',
           key: 'id'
         },
+        unique: true,
         type: Sequelize.INTEGER.UNSIGNED,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

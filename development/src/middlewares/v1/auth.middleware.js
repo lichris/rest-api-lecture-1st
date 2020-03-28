@@ -22,7 +22,14 @@ module.exports.check = async (req, res, next) => {
         .json({ message: '토큰이 잘못 되었습니다.' })
     }
 
-    const user = await v1Models.User.findByPk(payload.id)
+    const user = await v1Models.User.findByPk(payload.id, {
+      include: [
+        {
+          model: v1Models.UserProfile,
+          as: 'profile'
+        }
+      ]
+    })
 
     if (!user) {
       return res.status(HttpStatusCodes.NOT_FOUND)

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon --legacy-watch ./bin/www",
-    "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest --coverage",
+    "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "migrate:dev": "sequelize db:migrate",
     "migrate:test": "cross-env NODE_ENV=test sequelize db:migrate"
   },

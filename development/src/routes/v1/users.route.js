@@ -28,6 +28,13 @@ router.route('/:id')
   .delete(controller.destroy)
 
 router.route('/profiles')
-  .post(controller.createUserProfile)
+  .put(
+    auth.check,
+    controller.updateProfile
+  )
+  .delete(
+    auth.check,
+    controller.clearProfile
+  )
 
 module.exports = router

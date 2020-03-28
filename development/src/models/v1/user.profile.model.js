@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
           model: 'users',
           key: 'id'
         },
+        unique: true,
         type: DataTypes.INTEGER.UNSIGNED
       },
       profileImg: {

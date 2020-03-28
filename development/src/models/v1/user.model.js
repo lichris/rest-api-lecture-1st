@@ -1,6 +1,7 @@
 'use strict'
 
 const bcrypt = require('bcrypt')
+const uuid4 = require('../../utils/uuid4')
 
 const SALT_ROUND = 10
 
@@ -8,6 +9,15 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
     {
+      uuid: {
+        allowNull: false,
+        unique: true,
+        type: 'BINARY(16)',
+        defaultValue: Buffer.from(uuid4.generate(), 'hex'),
+        get: function () {
+          return Buffer.from(this.getDataValue('uuid')).toString('hex')
+        }
+      },
       nickname: {
         allowNull: false,
         type: DataTypes.STRING(20)
@@ -42,6 +52,16 @@ module.exports = (sequelize, DataTypes) => {
         // eslint-disable-next-line require-atomic-updates
         user.password = await bcrypt.hash(user.password, salt)
       }
+    } catch (err) {
+      throw err
+    }
+  })
+
+  User.afterCreate(async (user) => {
+    try {
+      await sequelize.models.UserProfile.create({
+        userId: user.id
+      })
     } catch (err) {
       throw err
     }
