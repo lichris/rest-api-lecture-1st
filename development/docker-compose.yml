@@ -30,15 +30,15 @@ services:
   #   ports:
   #     - 13000:3000
 
-  # redis:
-  #   restart: always
-  #   container_name: redis
-  #   build:
-  #     context: ./redis
-  #   volumes:
-  #     - redis_data:/home
-  #   ports:
-  #     - 16379:6379
+  redis:
+    restart: always
+    container_name: redis
+    build:
+      context: ./redis
+    volumes:
+      - redis_data:/home
+    ports:
+      - 16379:6379
 
 volumes:
   mysql_data:

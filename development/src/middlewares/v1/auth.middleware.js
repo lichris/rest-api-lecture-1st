@@ -1,8 +1,8 @@
 'use strict'
 const HttpStatusCodes = require('http-status-codes')
 
-const v1Models = require('../../models/v1')
 const jwt = require('../../utils/jwt')
+const userRepo = require('../../repos/user.repo')
 
 module.exports.check = async (req, res, next) => {
   try {
@@ -22,14 +22,7 @@ module.exports.check = async (req, res, next) => {
         .json({ message: '토큰이 잘못 되었습니다.' })
     }
 
-    const user = await v1Models.User.findByPk(payload.id, {
-      include: [
-        {
-          model: v1Models.UserProfile,
-          as: 'profile'
-        }
-      ]
-    })
+    const user = await userRepo.load(payload.id)
 
     if (!user) {
       return res.status(HttpStatusCodes.NOT_FOUND)

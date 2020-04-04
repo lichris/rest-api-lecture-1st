@@ -24,6 +24,7 @@
     "helmet": "^3.21.2",
     "http-errors": "^1.7.3",
     "http-status-codes": "^1.4.0",
+    "ioredis": "^4.16.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "morgan": "^1.9.1",

@@ -31,18 +31,40 @@ describe('GET /users', () => {
   })
 })
 
-describe('PUT /users/profiles', () => {
-  test('프로필 수정', async () => {
-    let res = await request(app)
-      .put('/v1/users/profiles')
-      .send({
-        profileImg: '/asdf',
-        greeting: 'asdf'
-      })
-      .set('Authorization', `Bearer ${ token }`)
+describe('PUT /users', () => {
+  // level /users
 
-    expect(res.statusCode).toBe(HttpStatusCodes.OK)
-    expect(res.body.data.profile.profileImg).toBe('/asdf')
-    expect(res.body.data.profile.greeting).toBe('asdf')
+  describe('PUT /profiles', () => {
+    // level /users/profiles
+    test('프로필 수정', async () => {
+      let res = await request(app)
+        .put('/v1/users/profiles')
+        .send({
+          profileImg: '/asdf',
+          greeting: 'asdf'
+        })
+        .set('Authorization', `Bearer ${ token }`)
+  
+      expect(res.statusCode).toBe(HttpStatusCodes.OK)
+      expect(res.body.data.profile.profileImg).toBe('/asdf')
+      expect(res.body.data.profile.greeting).toBe('asdf')
+    })
+  })
+})
+
+describe('DELETE /users', () => {
+  // level /users
+
+  describe('DELETE /profiles', () => {
+    // level /users/profiles
+    test('프로필 초기화', async () => {
+      let res = await request(app)
+        .delete('/v1/users/profiles')
+        .set('Authorization', `Bearer ${ token }`)
+  
+      expect(res.statusCode).toBe(HttpStatusCodes.OK)
+      expect(res.body.data.profile.profileImg).toBeFalsy()
+      expect(res.body.data.profile.greeting).toBeFalsy()
+    })
   })
 })

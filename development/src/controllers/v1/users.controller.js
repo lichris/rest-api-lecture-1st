@@ -1,11 +1,13 @@
 'use strict'
 
 const _ = require('lodash')
+const HttpStatusCodes = require('http-status-codes')
 const v1Models = require('../../models/v1')
+const success = require('../../utils/response')
 
 module.exports.get = async (req, res, next) => {
   try {
-    return res.json({ data: { user: req.user } })
+    return success(res, '', { user: req.user })
   } catch (err) {
     next(err)
   }
@@ -15,7 +17,7 @@ module.exports.create = async (req, res, next) => {
   try {
     const user = await v1Models.User.create(req.body)
 
-    return res.json({ user })
+    return success(res, '사용자를 생성했습니다.', user, HttpStatusCodes.CREATED)
   } catch (err) {
     next(err)
   }
@@ -33,7 +35,7 @@ module.exports.update = (req, res, next) => {
     }).catch(err => { throw (err) })
   }
 
-  return res.json({ message: '비밀번호를 수정했습니다.' })
+  return success(res, '비밀번호를 수정했습니다.')
 }
 
 module.exports.destroy = (req, res, next) => {
@@ -43,7 +45,7 @@ module.exports.destroy = (req, res, next) => {
     }
   }).catch(err => { throw (err) })
 
-  return res.json({ message: '사용자를 삭제했습니다.' })
+  return success(res, '사용자를 삭제했습니다.')
 }
 
 module.exports.updateProfile = async (req, res, next) => {
@@ -52,12 +54,7 @@ module.exports.updateProfile = async (req, res, next) => {
 
     await profile.update(req.body)
 
-    return res.json({
-      message: '프로필을 수정했습니다.',
-      data: {
-        profile
-      }
-    })
+    return success(res, '프로필을 수정했습니다.', { profile })
   } catch (err) {
     next(err)
   }
@@ -65,7 +62,13 @@ module.exports.updateProfile = async (req, res, next) => {
 
 module.exports.clearProfile = async (req, res, next) => {
   try {
-    
+    const profile = req.user.profile
+
+    profile.profileImg = null
+    profile.greeting = null
+    await profile.save()
+
+    return success(res, '프로필을 초기화 했습니다.', { profile })
   } catch (err) {
     next(err)
   }
