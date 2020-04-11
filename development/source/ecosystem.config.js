@@ -28,7 +28,7 @@ module.exports = {
       repo: 'git@github.com:lichris/rest-api-lecture-1st.git',
       path: '/home/ubuntu/lecture/development',
       'post-deploy':
-        'npm i && npm run build && cd /home/ubuntu/lecture/production && npm i --only=production && pm2 reload ecosystem.config.js --env production'
+        'npm i && npm run build && cd /home/ubuntu/lecture/production && npm i --only=production && pm2 reload all'
     }
   }
 }
