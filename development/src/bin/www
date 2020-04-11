@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable space-before-function-paren */
+
 /**
  * Module dependencies.
  */
@@ -30,7 +32,7 @@ server.on('error', onError)
 server.on('listening', onListening)
 
 /**
- * Normalize a port into a number, string, or false.
+ * Normalize a port into a num ber, string, or false.
  */
 
 function normalizePort(val) {
@@ -50,7 +52,7 @@ function normalizePort(val) {
 }
 
 /**
- * Event listener for HTTP server "error" event.
+ * Event listener fo r HTTP server "error" event.
  */
 
 function onError(error) {
@@ -78,7 +80,7 @@ function onError(error) {
 }
 
 /**
- * Event listener for HTTP server "listening" event.
+ * Event listener for HTTP s erver "listening" event.
  */
 
 function onListening() {
