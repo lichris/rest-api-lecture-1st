@@ -4,7 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
-  return res.json({ message: 'v1 pong' })
+  return res.json({ message: 'v1 ping' })
 })
 
 router.use('/auth', require('./auth.route'))
